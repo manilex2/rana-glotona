@@ -1,0 +1,29 @@
+export interface Producto {
+  id_producto?: number;
+  titulo_producto: string;
+  volumen_producto: number;
+  peso_producto: number;
+  cantidad_producto: number;
+  unidades_pack_producto: number;
+  costo_producto: number;
+  costo_transporte_producto: number;
+  costo_vzla_producto: number;
+  precio_venta_producto: number;
+  precio_real_producto: number;
+  precio_pagina_producto: number;
+  ancho_producto: number;
+  profundidad_producto: number;
+  alto_producto: number;
+  desperdicio_producto: number;
+  ancho_pack_producto: number;
+  profundidad_pack_producto: number;
+  alto_pack_producto: number;
+  volumen_pack_producto: number;
+  peso_pack_producto: number;
+  id_proveedor_producto?: string;
+  imagen_producto?: string;
+  id_categoria: number;
+  id_proveedor: number;
+  fecha_creacion_producto?: Date;
+  fecha_actualizacion_producto?: Date;
+}

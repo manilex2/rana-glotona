@@ -1,0 +1,69 @@
+h1 {
+  margin: 50px;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.imagen-brand {
+  width: 100%;
+  height: 30.4vw;
+}
+
+.imagen-logo {
+  width: 25vw;
+}
+
+.contenedor-imagen-logo {
+  text-align: center;
+  background-color: darkseagreen;
+  margin: -5px;
+}
+
+.contenedor-brand1 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../../assets/img/Brand1.jpg");
+  height: 30.4vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.contenedor-brand2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../../assets/img/Brand2.jpg");
+  height: 30.4vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.contenedor-brand3 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../../assets/img/Brand3.jpg");
+  height: 30.4vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.contenedor-brand4 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../../../assets/img/Brand4.jpg");
+  height: 30.4vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.contenedor-cuerpo-brand{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.texto-brand {
+  font-size: 4vw;
+}

@@ -1,0 +1,155 @@
+<mat-form-field>
+    <mat-label>Filtro</mat-label>
+    <input matInput (keyup)="aplicarFiltro($event);" placeholder="Ej. Panaderia" #input/>
+</mat-form-field>
+<div>
+  &nbsp;&nbsp;<button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName: 'Lista de Productos'})">Excel</button>
+  &nbsp;&nbsp;<button mat-raised-button (click)="exporter.exportTable('csv', {fileName: 'Lista de Productos'})">CSV</button>
+  &nbsp;&nbsp;<button mat-raised-button (click)="exporter.exportTable('json', {fileName: 'Lista de Productos'})">JSON</button>
+  &nbsp;&nbsp;<button mat-raised-button (click)="exporter.exportTable('txt', {fileName: 'Lista de Productos'})">Text</button>
+</div>
+
+<div class="mat-elevation-z8">
+  <div class="contenedor-tabla">
+    <table mat-table matTableExporter [dataSource]="fuenteDatos" #exporter="matTableExporter" [hiddenColumns]="[1]" matSort>
+
+      <ng-container matColumnDef="titulo_categoria">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
+        <td mat-cell *matCellDef="let row">{{row.titulo_categoria}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="id_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let row">{{row.id_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="titulo_producto">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</th>
+          <td mat-cell *matCellDef="let row">{{row.titulo_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="volumen_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Volumen</th>
+        <td mat-cell *matCellDef="let row">{{row.volumen_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="peso_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Peso</th>
+        <td mat-cell *matCellDef="let row">{{row.peso_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cantidad_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Cantidad Disponible</th>
+        <td mat-cell *matCellDef="let row">{{row.cantidad_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="unidades_pack_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Unidades por Pack</th>
+        <td mat-cell *matCellDef="let row">{{row.unidades_pack_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="costo_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Costo</th>
+        <td mat-cell *matCellDef="let row">{{row.costo_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="costo_transporte_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Costo de Transporte</th>
+        <td mat-cell *matCellDef="let row">{{row.costo_transporte_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="costo_vzla_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Costo Venezuela</th>
+        <td mat-cell *matCellDef="let row">{{row.costo_vzla_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="precio_venta_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio Venta</th>
+        <td mat-cell *matCellDef="let row">{{row.precio_venta_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="precio_real_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio Real</th>
+        <td mat-cell *matCellDef="let row">{{row.precio_real_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="precio_pagina_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio Pagina</th>
+        <td mat-cell *matCellDef="let row">{{row.precio_pagina_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ancho_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ancho</th>
+        <td mat-cell *matCellDef="let row">{{row.ancho_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="profundidad_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Profundidad</th>
+        <td mat-cell *matCellDef="let row">{{row.profundidad_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="alto_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Alto</th>
+        <td mat-cell *matCellDef="let row">{{row.alto_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ancho_pack_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Ancho (Pack)</th>
+        <td mat-cell *matCellDef="let row">{{row.ancho_pack_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="profundidad_pack_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Profundidad (Pack)</th>
+        <td mat-cell *matCellDef="let row">{{row.profundidad_pack_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="alto_pack_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Alto (Pack)</th>
+        <td mat-cell *matCellDef="let row">{{row.alto_pack_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="volumen_pack_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Volumen (Pack)</th>
+        <td mat-cell *matCellDef="let row">{{row.volumen_pack_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="peso_pack_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Peso (Pack)</th>
+        <td mat-cell *matCellDef="let row">{{row.peso_pack_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="id_proveedor_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Id Producto para Proveedor</th>
+        <td mat-cell *matCellDef="let row">{{row.id_proveedor_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="imagen_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Imagen</th>
+        <td mat-cell *matCellDef="let row">{{row.imagen_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="nombre_proveedor">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Proveedor</th>
+        <td mat-cell *matCellDef="let row">{{row.nombre_proveedor}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha_creacion_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Creacion de Producto</th>
+        <td mat-cell *matCellDef="let row">{{row.fecha_creacion_producto}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fecha_actualizacion_producto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de Actualizacion de Producto</th>
+        <td mat-cell *matCellDef="let row">{{row.fecha_actualizacion_producto}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnasMostradas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnasMostradas"></tr>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="5">No se encontraron productos.</td>
+      </tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" showFirstLastButtons></mat-paginator>
+</div>

@@ -1,0 +1,45 @@
+.grid-container {
+  margin: 20px;
+}
+
+.tarjeta {
+  width: 24.4vw;
+  display: inline-flex;
+  margin: 5px;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: stretch;
+  align-items: center;
+}
+
+@media only screen and (max-width: 959px){
+  .tarjeta {
+    width: 80vw;
+    display: flex;
+    margin: 5px;
+  }
+}
+@media only screen and (max-width: 768px) and (min-height: 1024px){
+  .tarjeta {
+    width: 60vw;
+    display: flex;
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 320px) and (min-height: 568px){
+  .tarjeta {
+    width: 75vw;
+    display: flex;
+    margin: 5px;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-height: 1366px){
+  .tarjeta {
+    width: 21vw;
+    display: inline-flex;
+    margin: 5px;
+  }
+}

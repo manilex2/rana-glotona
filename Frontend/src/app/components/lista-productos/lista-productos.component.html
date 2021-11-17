@@ -1,0 +1,19 @@
+<app-categorias-toolbar (click)="recuperarDatos();"></app-categorias-toolbar>
+<div class="grid-container">
+  <h1 *ngFor="let categoria of categorias" class="mat-h1">{{categoria.titulo_categoria}}</h1>
+  <ng-container *ngIf="productos.length>0; else noproductos">
+    <mat-card class="tarjeta" *ngFor="let producto of productos;">
+      <mat-card-header>
+        <mat-card-title>
+          {{producto.titulo_producto}}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <img [src]="producto.imagen_producto"/>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+  <ng-template #noproductos>
+    <p>No hay productos en esta categoría.</p>
+  </ng-template>
+</div>

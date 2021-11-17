@@ -1,0 +1,29 @@
+<form [formGroup]="loginForm" validate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <div class="contenedor-avatar">
+        <img src="../../../assets/img/avatar-login.png" alt="Avatar Login" class="imagen-usuario">
+      </div>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <input matInput placeholder="Usuario" formControlName="usuario">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field>
+            <input matInput type="password" placeholder="Contraseña" formControlName="clave">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -1,0 +1,6 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link *ngFor="let categoria of categorias" [routerLink]="['/categorias/productos', categoria.id_categoria]">{{categoria.titulo_categoria}}</a>
+  <ng-template #sincategorias>
+    <p>No hay categorías.</p>
+  </ng-template>
+</nav>

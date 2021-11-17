@@ -1,0 +1,18 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.menu-categorias .mat-menu-content {
+  /* background-color: rgb(63, 81, 181); */
+  /*background: #8d983b;*/
+  background: #cd1f3e;
+}
+
+.menu-categorias .mat-menu-content a {
+  color: #fff;
+}
+
+.mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 25px;
+}

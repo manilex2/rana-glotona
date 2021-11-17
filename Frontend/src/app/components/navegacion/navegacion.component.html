@@ -1,0 +1,28 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="toolbar-menu">Menú</mat-toolbar>
+    <mat-nav-list class="lista-sidenav">
+      <a mat-list-item routerLink="">Inicio</a>
+      <a mat-list-item routerLink="login">Iniciar Sesión</a>
+      <a mat-list-item routerLink="tabla-productos">Lista de Productos</a>
+      <a mat-list-item routerLink="nuevo-producto">Agregar producto</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="barra-navegacion-superior">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+        <span>La Rana Glotona</span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

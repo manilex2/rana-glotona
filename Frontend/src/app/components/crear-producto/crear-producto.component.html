@@ -1,0 +1,236 @@
+<div class="contenedor">
+  <form (ngSubmit)="enviarDatos();" [formGroup]="crearProducto">
+    <mat-card class="tarjeta-producto">
+      <mat-card-header>
+        <mat-card-title>CREAR PRODUCTO</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="titulo-producto" appearence='outline'>
+          <mat-label>Nombre del Producto</mat-label>
+          <input type="text" placeholder="Nombre del producto" matInput autocomplete="off" [(ngModel)]="this.crearProducto.value.titulo_producto" formControlName="titulo_producto" [ngClass]="{'is-invalid': enviado && f.titulo_producto.errors}">
+          <div *ngIf="enviado && f.titulo_producto.errors">
+            <p *ngIf="f.titulo_producto.errors.required">Este campo es requerido</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Volumen</mat-label>
+          <input matInput type="number" placeholder="0.0001" autocomplete="off" formControlName="volumen_producto" [ngClass]="{'is-invalid': enviado && f.volumen_producto.errors}">
+          <span matSuffix>ft3.</span>
+          <div *ngIf="enviado && f.volumen_producto.errors">
+            <p *ngIf="f.volumen_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.volumen_producto.errors.pattern">Este campo debe ser numerico, entero o un decimal determinado por punto.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Peso</mat-label>
+          <input placeholder="0.001" matInput type="number" autocomplete="off" formControlName="peso_producto" [ngClass]="{'is-invalid': enviado && f.peso_producto.errors}">
+          <span matSuffix>kg.</span>
+          <div *ngIf="enviado && f.peso_producto.errors">
+            <p *ngIf="f.peso_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.peso_producto.errors.pattern">Este campo debe ser numerico, entero o un decimal determinado por punto, máximo 3 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Stock Inicial</mat-label>
+          <input placeholder="0" matInput type="number" autocomplete="off" formControlName="cantidad_producto" [ngClass]="{'is-invalid': enviado && f.cantidad_producto.errors}">
+          <span matSuffix>unidades</span>
+          <div *ngIf="enviado && f.cantidad_producto.errors">
+            <p *ngIf="f.cantidad_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.cantidad_producto.errors.pattern">Este campo debe ser numerico entero, no negativo.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Unidades por Pack</mat-label>
+          <input placeholder="0" matInput type="number" autocomplete="off" formControlName="unidades_pack_producto" [ngClass]="{'is-invalid': enviado && f.unidades_pack_producto.errors}">
+          <span matSuffix>unidades</span>
+          <div *ngIf="enviado && f.unidades_pack_producto.errors">
+            <p *ngIf="f.unidades_pack_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.unidades_pack_producto.errors.pattern">Este campo debe ser numerico entero, no negativo.</p>
+          </div>
+          <mat-hint>En caso de no ser packs si no unidades, coloque 1</mat-hint>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Costo</mat-label>
+          <input placeholder="0.99" matInput type="number" (change)="costoProducto();" autocomplete="off" formControlName="costo_producto" [ngClass]="{'is-invalid': enviado && f.costo_producto.errors}">
+          <span matSuffix>
+            <mat-button-toggle-group>
+              <mat-button-toggle (click)="esDolar=true; esEuro=false; costoProducto();" value="$">$</mat-button-toggle>
+              <mat-button-toggle (click)="esEuro=true; esDolar=false; costoProducto();" value="€">€</mat-button-toggle>
+            </mat-button-toggle-group>
+          </span>
+          <div *ngIf="enviado && f.costo_producto.errors">
+            <p *ngIf="f.costo_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.costo_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Costo Transporte</mat-label>
+          <input placeholder="0.99" matInput type="number" (change)="costoTransporteProducto();" autocomplete="off" formControlName="costo_transporte_producto" [ngClass]="{'is-invalid': enviado && f.costo_transporte_producto.errors}">
+          <span matSuffix>
+            <mat-button-toggle-group>
+              <mat-button-toggle (click)="esDolar=true; esEuro=false; costoTransporteProducto();" value="$">$</mat-button-toggle>
+              <mat-button-toggle (click)="esEuro=true; esDolar=false; costoTransporteProducto();" value="€">€</mat-button-toggle>
+            </mat-button-toggle-group>
+          </span>
+          <div *ngIf="enviado && f.costo_transporte_producto.errors">
+            <p *ngIf="f.costo_transporte_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.costo_transporte_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Costo Vzla</mat-label>
+          <input placeholder="0.99" matInput type="number" (change)="costoVzlaProducto();" autocomplete="off" formControlName="costo_vzla_producto" [ngClass]="{'is-invalid': enviado && f.costo_vzla_producto.errors}">
+          <span matSuffix>
+            <mat-button-toggle-group>
+              <mat-button-toggle (click)="esDolar=true; esEuro=false; costoVzlaProducto();" value="$">$</mat-button-toggle>
+              <mat-button-toggle (click)="esEuro=true; esDolar=false; costoVzlaProducto();" value="€">€</mat-button-toggle>
+            </mat-button-toggle-group>
+          </span>
+          <div *ngIf="enviado && f.costo_vzla_producto.errors">
+            <p *ngIf="f.costo_vzla_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.costo_vzla_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Precio Venta</mat-label>
+          <input placeholder="0.99" matInput type="number" autocomplete="off" formControlName="precio_venta_producto" [ngClass]="{'is-invalid': enviado && f.precio_venta_producto.errors}">
+          <span matSuffix>$</span>
+          <div *ngIf="enviado && f.precio_venta_producto.errors">
+            <p *ngIf="f.precio_venta_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.precio_venta_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Precio Real</mat-label>
+          <input placeholder="0.99" matInput type="number" autocomplete="off" formControlName="precio_real_producto" [ngClass]="{'is-invalid': enviado && f.precio_real_producto.errors}">
+          <span matSuffix>$</span>
+          <div *ngIf="enviado && f.precio_real_producto.errors">
+            <p *ngIf="f.precio_real_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.precio_real_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Precio Página</mat-label>
+          <input placeholder="0.99" matInput type="number" autocomplete="off" [(ngModel)]="this.crearProducto.value.precio_pagina_producto" formControlName="precio_pagina_producto" [ngClass]="{'is-invalid': enviado && f.precio_pagina_producto.errors}">
+          <span matSuffix>$</span>
+          <div *ngIf="enviado && f.precio_pagina_producto.errors">
+            <p *ngIf="f.precio_pagina_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.precio_pagina_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Ancho</mat-label>
+          <input placeholder="1.00" matInput type="number" autocomplete="off" formControlName="ancho_producto" [ngClass]="{'is-invalid': enviado && f.ancho_producto.errors}">
+          <span matSuffix>cm.</span>
+          <div *ngIf="enviado && f.ancho_producto.errors">
+            <p *ngIf="f.ancho_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.ancho_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Profundidad</mat-label>
+          <input placeholder="1.00" matInput type="number" autocomplete="off" formControlName="profundidad_producto" [ngClass]="{'is-invalid': enviado && f.profundidad_producto.errors}">
+          <span matSuffix>cm.</span>
+          <div *ngIf="enviado && f.profundidad_producto.errors">
+            <p *ngIf="f.profundidad_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.profundidad_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Alto</mat-label>
+          <input placeholder="1.00" matInput type="number" autocomplete="off" formControlName="alto_producto" [ngClass]="{'is-invalid': enviado && f.alto_producto.errors}">
+          <span matSuffix>cm.</span>
+          <div *ngIf="enviado && f.alto_producto.errors">
+            <p *ngIf="f.alto_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.alto_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Desperdicio</mat-label>
+          <input placeholder="0.00" matInput type="number" autocomplete="off" formControlName="desperdicio_producto" [ngClass]="{'is-invalid': enviado && f.desperdicio_producto.errors}">
+          <span matSuffix>%</span>
+          <div *ngIf="enviado && f.desperdicio_producto.errors">
+            <p *ngIf="f.desperdicio_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.desperdicio_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Ancho (Pack)</mat-label>
+          <input placeholder="1.00" matInput type="number" autocomplete="off" formControlName="ancho_pack_producto" [ngClass]="{'is-invalid': enviado && f.ancho_pack_producto.errors}">
+          <span matSuffix>cm.</span>
+          <div *ngIf="enviado && f.ancho_pack_producto.errors">
+            <p *ngIf="f.ancho_pack_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.ancho_pack_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Profundidad (Pack)</mat-label>
+          <input placeholder="1.00" matInput type="number" autocomplete="off" formControlName="profundidad_pack_producto" [ngClass]="{'is-invalid': enviado && f.profundidad_pack_producto.errors}">
+          <span matSuffix>cm.</span>
+          <div *ngIf="enviado && f.profundidad_pack_producto.errors">
+            <p *ngIf="f.profundidad_pack_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.profundidad_pack_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Alto (Pack)</mat-label>
+          <input placeholder="1.00" matInput type="number" autocomplete="off" formControlName="alto_pack_producto" [ngClass]="{'is-invalid': enviado && f.alto_pack_producto.errors}">
+          <span matSuffix>cm.</span>
+          <div *ngIf="enviado && f.alto_pack_producto.errors">
+            <p *ngIf="f.alto_pack_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.alto_pack_producto.errors.pattern">Este campo debe ser numerico entero, no negativo, máximo 2 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Volumen (Pack)</mat-label>
+          <input matInput type="number" placeholder="0.0001" autocomplete="off" formControlName="volumen_pack_producto" [ngClass]="{'is-invalid': enviado && f.volumen_pack_producto.errors}">
+          <span matSuffix>ft3.</span>
+          <div *ngIf="enviado && f.volumen_pack_producto.errors">
+            <p *ngIf="f.volumen_pack_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.volumen_pack_producto.errors.pattern">Este campo debe ser numerico, entero o un decimal determinado por punto.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Peso (Pack)</mat-label>
+          <input placeholder="0.001" matInput type="number" autocomplete="off" formControlName="peso_pack_producto" [ngClass]="{'is-invalid': enviado && f.peso_pack_producto.errors}">
+          <span matSuffix>kg.</span>
+          <div *ngIf="enviado && f.peso_pack_producto.errors">
+            <p *ngIf="f.peso_pack_producto.errors.required">Este campo es requerido</p>
+            <p *ngIf="f.peso_pack_producto.errors.pattern">Este campo debe ser numerico, entero o un decimal determinado por punto, máximo 3 decimales.</p>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>ID del Proveedor</mat-label>
+          <input placeholder="9999999999" matInput type="text" autocomplete="off" formControlName="id_proveedor_producto">
+          <span matPrefix>#</span>
+        </mat-form-field>
+        <mat-form-field class="categoria-proveedor">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="id_categoria">
+            <mat-option *ngFor="let categoria of categorias" [value]="categoria.id_categoria">{{categoria.titulo_categoria}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="categoria-proveedor">
+          <mat-label>Proveedor</mat-label>
+          <mat-select formControlName="id_proveedor">
+            <mat-option *ngFor="let proveedor of proveedores" [value]="proveedor.id_proveedor">{{proveedor.nombre_proveedor}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div>
+          <label for="imagen_producto">Imagen de producto </label>
+          <input name="imagen_producto" type="file" accept="image/*" (change)="subirImagen($event);">
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button type="submit" class="boton-crear" mat-raised-button>Crear Producto</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+
+  <mat-card class="tarjeta-producto-prev">
+    <p>{{this.crearProducto.value.titulo_producto}}</p>
+    <img *ngIf="!previsualizacion" class="imagen-muestra" [src]="this.crearProducto.value.imagen_producto"/>
+    <img *ngIf="previsualizacion" class="imagen-muestra" [src]="previsualizacion">
+    <p>$ {{this.crearProducto.value.precio_pagina_producto}}</p>
+  </mat-card>
+</div>
